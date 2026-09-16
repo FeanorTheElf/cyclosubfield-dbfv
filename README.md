@@ -1,7 +1,7 @@
 # Bootstrapping BFV over cyclotomic subfields — reference implementation
 
 <!-- TODO: replace with the final paper title before submission -->
-Artifact accompanying *\<paper title to be determined\>*.
+Artifact accompanying *"Packing, Precision, and Practice: SIMD Large-Integer FHE from Cyclotomic Subfields"*.
 
 This repository contains an implementation of BFV and of its digit-decomposed variant dBFV over
 **cyclotomic subfields** — abelian, non-Galois-closed number fields `L` sitting inside a
