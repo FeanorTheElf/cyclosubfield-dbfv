@@ -1,0 +1,31 @@
+# The release profile sets `-Ctarget-cpu=native`, which needs an unstable cargo feature; the
+# toolchain is pinned in `rust-toolchain.toml`.
+cargo-features = ["profile-rustflags"]
+
+[workspace]
+resolver = "3"
+members = ["cyclosubfield-benchmarks", "cyclosubfield-dbfv"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+publish = false
+
+# Versions shared between the implementation and the benchmarks are pinned here so that both
+# crates are always built against the same `feanor-math`; the benchmarks additionally depend on
+# `fheanor`, which is compiled against an exact `feanor-math` version.
+[workspace.dependencies]
+feanor-math = "=3.5.24"
+feanor-tracing = "=1.0.3"
+
+# Profiles apply to the whole workspace, hence they live in the root manifest. `lto = "fat"` and
+# `codegen-units = 1` matter for the NTT and tensor kernels in `cyclosubfield-dbfv::hal::cpu`, which rely
+# on cross-crate inlining of the Montgomery arithmetic; `-Ctarget-cpu=native` enables the wide
+# vector units the same kernels are written for. All benchmark numbers were taken with this
+# profile.
+[profile.release]
+lto = "fat"
+opt-level = 3
+panic = "abort"
+codegen-units = 1
+rustflags = ["-Ctarget-cpu=native"]

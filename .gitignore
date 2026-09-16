@@ -1,0 +1,7 @@
+/target
+
+# tracing-chrome output, written by `feanor_tracing`
+trace-*.json
+
+# generated linear-transform / digit-extraction circuits and hypercube structures; see the README
+/cyclosubfield-benchmarks/cache

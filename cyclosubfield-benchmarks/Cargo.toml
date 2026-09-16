@@ -1,0 +1,16 @@
+[package]
+name = "cyclosubfield-benchmarks"
+description = "Benchmarks comparing cyclotomic-subring (d)BFV against cyclotomic BFV and TFHE"
+version.workspace = true
+edition.workspace = true
+publish.workspace = true
+
+[dependencies]
+cyclosubfield-dbfv = { path = "../cyclosubfield-dbfv" }
+feanor-math.workspace = true
+feanor-tracing.workspace = true
+fheanor = "=0.11.9"
+rand = "0.9.3"
+serde = "1.0.229"
+serde_json = "1.0.151"
+tfhe = { version = "1.7.0", features = ["boolean", "shortint", "integer"] }
